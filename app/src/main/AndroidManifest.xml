@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gomes.kryslan.alarmelembrete">
 
+    <!--PERMISSÕES-->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,5 +24,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>
