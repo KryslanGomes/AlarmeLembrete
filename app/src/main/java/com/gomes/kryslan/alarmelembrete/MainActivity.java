@@ -92,7 +92,7 @@ public class MainActivity extends Tools {
         String diaCompleto = dataFormat.format(hoje);
         if (cursor.moveToFirst()){
             do {
-                Toast.makeText(this.getApplicationContext(), "Título: " + cursor.getString(1) + " Começa: " + diaCompleto, Toast.LENGTH_LONG ).show();
+                Toast("Título: " + cursor.getString(1) + " Começa: " + diaCompleto);
             } while ( cursor.moveToNext());
         }
     }
