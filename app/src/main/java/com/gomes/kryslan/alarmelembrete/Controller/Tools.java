@@ -1,4 +1,4 @@
-package com.gomes.kryslan.alarmelembrete;
+package com.gomes.kryslan.alarmelembrete.Controller;
 
 import android.app.Activity;
 import android.support.design.widget.Snackbar;

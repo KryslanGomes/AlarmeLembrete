@@ -2,21 +2,18 @@ package com.gomes.kryslan.alarmelembrete;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Application;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.gomes.kryslan.alarmelembrete.Controller.Tools;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
