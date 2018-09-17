@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:a="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:a="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     a:layout_width="match_parent"
-    a:layout_height="match_parent">
+    a:layout_height="wrap_content">
 
     <!--HORA-->
     <TextView
@@ -14,12 +13,12 @@
 
         a:layout_alignParentStart="true"
         a:layout_alignParentTop="true"
-        a:text="00"
-        a:textSize="30sp"
-        a:textColor="@color/primary_text"
-
-        a:layout_marginTop="10dp"
         a:layout_marginStart="10dp"
+        a:layout_marginTop="10dp"
+        a:text="00"
+
+        a:textColor="@color/primary_text"
+        a:textSize="30sp"
         tools:ignore="HardcodedText" />
 
     <!--SEPARADOR DE TEMPO-->
@@ -29,12 +28,12 @@
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
 
-        a:text=":"
-        a:textSize="30sp"
         a:layout_marginTop="7dp"
+        a:layout_toEndOf="@+id/hora"
+        a:text=":"
         a:textColor="@color/primary_text"
 
-        a:layout_toEndOf="@+id/hora"
+        a:textSize="30sp"
         tools:ignore="HardcodedText" />
 
     <!--MINUTO-->
@@ -45,13 +44,13 @@
         a:layout_height="wrap_content"
 
         a:layout_alignParentTop="true"
+        a:layout_marginTop="10dp"
+        a:layout_toEndOf="@+id/separadorTempo"
         a:text="00"
-        a:textSize="30sp"
+
         a:textColor="@color/primary_text"
 
-        a:layout_marginTop="10dp"
-
-        a:layout_toEndOf="@+id/separadorTempo"
+        a:textSize="30sp"
         tools:ignore="HardcodedText" />
 
     <!--LEMBRETE-->
@@ -61,15 +60,15 @@
         a:layout_width="wrap_content"
         a:layout_height="wrap_content"
 
-        a:text="Lembrete."
-        a:textSize="12sp"
-        a:textColor="@color/secondary_text"
-
         a:layout_alignParentStart="true"
-        a:layout_marginTop="5dp"
+        a:layout_below="@+id/hora"
         a:layout_marginStart="10dp"
 
-        a:layout_below="@+id/hora"
+        a:layout_marginTop="5dp"
+        a:text="Lembrete."
+        a:textColor="@color/secondary_text"
+
+        a:textSize="12sp"
         tools:ignore="HardcodedText" />
 
 
@@ -79,20 +78,19 @@
         a:layout_height="wrap_content"
 
         a:layout_alignParentEnd="true"
-        a:layout_marginTop="15dp"
         a:layout_marginEnd="10dp"
-        />
+        a:layout_marginTop="15dp" />
 
     <View
         a:id="@+id/diveder"
-        a:layout_marginTop="15dp"
-        a:layout_below="@+id/lembrete"
+        a:layout_width="match_parent"
+        a:layout_height="0.8dp"
 
-        a:layout_marginStart="10dp"
+        a:layout_below="@+id/lembrete"
         a:layout_marginEnd="10dp"
 
-        a:background="@color/divider"
-        a:layout_width="match_parent"
+        a:layout_marginStart="10dp"
+        a:layout_marginTop="15dp"
 
-        a:layout_height="0.8dp" />
+        a:background="@color/divider" />
 </RelativeLayout>

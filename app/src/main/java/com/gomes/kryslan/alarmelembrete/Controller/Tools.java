@@ -15,6 +15,7 @@ public class Tools extends AppCompatActivity {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
     }
     public void Toast(String mensagem, int duracao){
-        Toast.makeText(this, mensagem, duracao).show();
+        if(duracao == 0 ) Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
+        else Toast.makeText(this, mensagem, Toast.LENGTH_LONG).show();
     }
 }
