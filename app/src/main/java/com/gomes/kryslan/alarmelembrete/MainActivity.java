@@ -2,6 +2,7 @@ package com.gomes.kryslan.alarmelembrete;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import java.util.Locale;
 
 public class MainActivity extends Tools {
     Activity a = this;
+    Context c = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +33,7 @@ public class MainActivity extends Tools {
         //TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setTitle(c.getResources().getString(R.string.lembretes));
 
         //FAB
         FloatingActionButton fab = findViewById(R.id.fab);
