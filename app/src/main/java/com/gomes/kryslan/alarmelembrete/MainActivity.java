@@ -3,6 +3,8 @@ package com.gomes.kryslan.alarmelembrete;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -46,7 +48,13 @@ public class MainActivity extends Tools {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String nomePackageCalendario = CalendarContract.Events.CUSTOM_APP_PACKAGE;
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage(nomePackageCalendario);
+                if (launchIntent != null) {
+                    startActivity(launchIntent);
+                }else{
+                    SnackBar(a,"Aplicativo agenda não encontrado em seu celular, instále-o.");
+                }
             }
         });
 
@@ -55,6 +63,17 @@ public class MainActivity extends Tools {
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         fragment =  new FragmentAlarmes();
 
+        ft.replace(R.id.fragment, fragment).commit();
+    }
+
+    //ATUALIZA OS ALARMES onResume
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        Fragment fragment;
+        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        fragment =  new FragmentAlarmes();
         ft.replace(R.id.fragment, fragment).commit();
     }
 

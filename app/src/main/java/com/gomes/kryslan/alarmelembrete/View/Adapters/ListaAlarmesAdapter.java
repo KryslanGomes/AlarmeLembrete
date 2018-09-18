@@ -62,8 +62,19 @@ public class ListaAlarmesAdapter extends RecyclerView.Adapter<ListaAlarmesAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ListaAlarmesAdapter.MyViewHolder myViewHolder, int positionList) {  //Vincula nossos dados com a view. (Seta o valor de cada 'mList' com uma view)
-        myViewHolder.hora.setText(String.valueOf(mList.get(positionList).getHora()));
-        myViewHolder.minuto.setText(String.valueOf(mList.get(positionList).getMinuto()));
+        //Adiciona o 0 se tiver apenas um número, para ficar mais bonito. Ex: 0 horas -> 00 horas.
+        int horaInt = mList.get(positionList).getHora();
+        String horaString;
+        if(horaInt < 10)  horaString = "0" + horaInt;
+        else horaString = "" + horaInt;
+        myViewHolder.hora.setText(horaString);
+
+        int minutoInt = mList.get(positionList).getMinuto();
+        String minutoString;
+        if(minutoInt < 10)  minutoString = "0" + minutoInt;
+        else minutoString = "" + minutoInt;
+        myViewHolder.minuto.setText(minutoString);
+
         myViewHolder.lembrete.setText(mList.get(positionList).getLembrete());
         myViewHolder.ativado.setChecked(true);
     }

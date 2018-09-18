@@ -20,7 +20,7 @@ public class BdCore extends SQLiteOpenHelper {
     //CREATE
     @Override
     public void onCreate(SQLiteDatabase bd) {
-        bd.execSQL("CREATE TABLE `lembretesDeHoje` (" +
+        bd.execSQL("CREATE TABLE `lembretesAtivados` (" +
                 "`_id`INTEGER NOT NULL PRIMARY KEY," +
                 "`ativado`INTERGER);");
 
@@ -38,7 +38,7 @@ public class BdCore extends SQLiteOpenHelper {
     //UPGRADE
     @Override
     public void onUpgrade(SQLiteDatabase bd, int oldVersion, int newVersion) {
-        bd.execSQL("DROP TABLE IF EXISTS lembretesDeHoje");
+        bd.execSQL("DROP TABLE IF EXISTS lembretesAtivados");
         onCreate(bd);
     }
 }

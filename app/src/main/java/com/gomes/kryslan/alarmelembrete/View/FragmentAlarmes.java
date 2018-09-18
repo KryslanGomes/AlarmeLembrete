@@ -227,6 +227,7 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
                 CalendarContract.Events.DTSTART,  //Data que o evento começa.
                 CalendarContract.Events.DTEND,  //Data que o evento termina.
                 CalendarContract.Events.ALL_DAY,
+                CalendarContract.Events.DELETED,
                 CalendarContract.Events.EVENT_LOCATION};
         //O mês começa no 0 então: 0 = Janeiro, 1 = Fevereiro, etc...
 
@@ -244,7 +245,7 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
         Calendar dataComeco = Calendar.getInstance();
         dataComeco.set(ano,mes-1,dia,0,0);  //(Mês é -1 pois o mês na tabela começa no 0).
 
-        Calendar dataFim= Calendar.getInstance();
+        Calendar dataFim = Calendar.getInstance();
         dataFim.set(ano,mes-1,dia,23,59);  //(Mês é -1 pois o mês na tabela começa no 0).
 
         String where = "(( " + CalendarContract.Events.DTSTART + " >= " + dataComeco.getTimeInMillis() +
@@ -254,16 +255,25 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
         Cursor cursor = c.getContentResolver().query(CalendarContract.Events.CONTENT_URI, colunas, where, null, null );
 
         List<Alarmes> list = new ArrayList<>();
-        SimpleDateFormat hora = new SimpleDateFormat("HH", local);
-        SimpleDateFormat minuto = new SimpleDateFormat("mm", local);
+        SimpleDateFormat formatoHora = new SimpleDateFormat("HH", local);
+        SimpleDateFormat formatoMinuto = new SimpleDateFormat("mm", local);
         if (cursor.moveToFirst()){
             do {
-                Alarmes a = new Alarmes();
-                a.setHora(Integer.parseInt(hora.format(cursor.getInt(3))));
-                a.setMinuto(Integer.parseInt(minuto.format(cursor.getInt(3))));
-                a.setLembrete(cursor.getString(1));
-                a.setAtivado(1);
-                list.add(a);
+                if(cursor.getInt(6) == 0) {  //Confere se o valor foi deletado, se sim (0) adiciona, não == 1.
+                    Alarmes a = new Alarmes();
+                    //DATA COMEÇA EVENTO
+                    long eventStart = cursor.getLong(3);
+                    Calendar calendario = Calendar.getInstance();
+                    calendario.setTimeInMillis(eventStart);
+
+                    a.setHora(Integer.valueOf(formatoHora.format(calendario.getTime())));
+                    a.setMinuto(Integer.valueOf(formatoMinuto.format(calendario.getTime())));
+
+                    //CONFERE SE É ANIVERSÁRIO (futuramente pode configurar para criar um evento no dia seguinte para lembrar)
+                    a.setLembrete(cursor.getString(1));
+                    a.setAtivado(1);
+                    list.add(a);
+                }
             } while (cursor.moveToNext());
         }
         return list;
