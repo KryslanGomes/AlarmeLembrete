@@ -40,8 +40,8 @@ public class MainActivity extends Tools {
 
         //TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
-        toolbar.setTitle(c.getResources().getString(R.string.lembretes));
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(c.getResources().getString(R.string.lembretes));
 
         //FAB
         FloatingActionButton fab = findViewById(R.id.fab);

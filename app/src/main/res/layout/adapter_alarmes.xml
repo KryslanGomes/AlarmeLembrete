@@ -64,7 +64,7 @@
         a:layout_below="@+id/hora"
         a:layout_marginStart="10dp"
 
-        a:layout_marginTop="5dp"
+        a:layout_marginTop="10dp"
         a:text="Lembrete."
         a:textColor="@color/secondary_text"
 
