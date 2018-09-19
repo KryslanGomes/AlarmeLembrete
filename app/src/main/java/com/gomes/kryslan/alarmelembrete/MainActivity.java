@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends Tools {
     Activity a = this;
@@ -41,7 +42,7 @@ public class MainActivity extends Tools {
         //TOOLBAR
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(c.getResources().getString(R.string.lembretes));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(c.getResources().getString(R.string.lembretes));
 
         //FAB
         FloatingActionButton fab = findViewById(R.id.fab);

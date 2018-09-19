@@ -252,14 +252,14 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
                 " ) AND ( " +  //where data do evento seja hoje.
                 CalendarContract.Events.DTSTART + " <= " + dataFim.getTimeInMillis() + " ))";
 
-        Cursor cursor = c.getContentResolver().query(CalendarContract.Events.CONTENT_URI, colunas, where, null, null );
+        Cursor cursor = c.getContentResolver().query(CalendarContract.Events.CONTENT_URI, colunas, where, null, CalendarContract.Events.DTSTART);
 
         List<Alarmes> list = new ArrayList<>();
         SimpleDateFormat formatoHora = new SimpleDateFormat("HH", local);
         SimpleDateFormat formatoMinuto = new SimpleDateFormat("mm", local);
-        if (cursor.moveToFirst()){
+        if (cursor != null && cursor.moveToFirst()) {
             do {
-                if(cursor.getInt(6) == 0) {  //Confere se o valor foi deletado, se sim (0) adiciona, não == 1.
+                if (cursor.getInt(6) == 0) {  //Confere se o valor foi deletado, se sim (0) adiciona, não == 1.
                     Alarmes a = new Alarmes();
                     //DATA COMEÇA EVENTO
                     long eventStart = cursor.getLong(3);
@@ -275,6 +275,18 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
                     list.add(a);
                 }
             } while (cursor.moveToNext());
+            cursor.close();
+
+            list = OrganizaAlarmesNumericamente(list);  //Organiza a lista na ordem de horas e minutos.
+        }
+
+        return list;
+    }
+
+    private List<Alarmes> OrganizaAlarmesNumericamente(List<Alarmes> list){
+        List<Alarmes> listaOrdenada = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+
         }
         return list;
     }

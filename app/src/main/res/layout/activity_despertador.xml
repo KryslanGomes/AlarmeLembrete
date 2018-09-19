@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <!--LEMBRETE-->
+    <TextView
+        android:id="@+id/lembrete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+
+        android:gravity="center"
+
+        android:text="@string/compromisso"
+        android:textColor="@color/primary_text"
+        android:textSize="24sp" />
+
+    <!--DESCRIÇÃO-->
+    <TextView
+        android:id="@+id/descricao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+
+        android:gravity="center"
+
+        android:textColor="@color/primary_text"
+        android:textSize="14sp"
+
+        android:layout_marginTop="200dp"
+        android:text="TextView" />
+
+    <!--BOTÃO CENTRAL-->
+    <ImageView
+        android:id="@+id/btPrincipalAlarme"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        android:layout_centerInParent="true"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="60dp"
+
+        app:srcCompat="@drawable/ic_clock" />
+
+    <!--DESLIGA O ALARME-->
+    <ImageView
+        android:id="@+id/btDesligarAlarme"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/btPrincipalAlarme"
+
+        app:srcCompat="@drawable/ic_alarm_off_grey" />
+
+    <!--SONECA-->
+    <ImageView
+        android:id="@+id/btSoneca"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+
+        android:layout_toEndOf="@+id/btPrincipalAlarme"
+        android:layout_centerVertical="true"
+
+        app:srcCompat="@drawable/ic_sleep_grey" />
+
+    <!--HORA-->
+    <TextView
+        android:id="@+id/hora"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_toStartOf="@+id/separadorTempo"
+        android:layout_below="@+id/btPrincipalAlarme"
+        android:layout_marginTop="23dp"
+
+        android:text="00"
+        android:textColor="@color/primary_text"
+        android:textSize="40sp"
+        tools:ignore="HardcodedText" />
+
+    <!--SEPARADOR DE TEMPO-->
+    <TextView
+        android:id="@+id/separadorTempo"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/btPrincipalAlarme"
+        android:text=":"
+        android:textColor="@color/primary_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+        android:textSize="40sp"
+        tools:ignore="HardcodedText" />
+
+    <!--MINUTO-->
+    <TextView
+        android:id="@+id/minuto"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_toEndOf="@+id/separadorTempo"
+        android:layout_below="@+id/btPrincipalAlarme"
+        android:layout_marginTop="23dp"
+
+        android:text="00"
+        android:textColor="@color/primary_text"
+        android:textSize="40sp"
+        tools:ignore="HardcodedText" />
+</RelativeLayout>

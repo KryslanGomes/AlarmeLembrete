@@ -66,7 +66,7 @@
 
         a:layout_marginTop="10dp"
         a:text="Lembrete."
-        a:textColor="@color/secondary_text"
+        a:textColor="@color/primary_text"
 
         a:textSize="12sp"
         tools:ignore="HardcodedText" />
