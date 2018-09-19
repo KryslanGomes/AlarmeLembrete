@@ -40,15 +40,6 @@
         android:layout_marginTop="200dp"
         android:text="TextView" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-
-        android:layout_centerInParent="true"
-
-        app:srcCompat="@drawable/ic_circle_white" />
-
     <!--BOTÃO CENTRAL-->
     <ImageView
         android:id="@+id/btPrincipalAlarme"
@@ -60,13 +51,11 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="60dp"
-        android:background="@android:color/transparent"
-
-        app:srcCompat="@drawable/ic_clock" />
+        android:background="@android:color/transparent"/>
 
     <!--DESLIGA O ALARME-->
     <ImageView
-        android:id="@+id/btDesligarAlarme"
+        android:id="@+id/imgDesligaAlarme"
         android:layout_width="40dp"
         android:layout_height="40dp"
 
@@ -77,7 +66,7 @@
 
     <!--SONECA-->
     <ImageView
-        android:id="@+id/btSoneca"
+        android:id="@+id/imgSoneca"
         android:layout_width="40dp"
         android:layout_height="40dp"
 
