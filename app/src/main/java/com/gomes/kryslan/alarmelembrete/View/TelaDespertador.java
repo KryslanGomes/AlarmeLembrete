@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.Gravity;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gomes.kryslan.alarmelembrete.Controller.Tools;
@@ -37,5 +38,7 @@ public class TelaDespertador extends Tools {
         txHora.setText(formatoHora.format(hoje.getTime()));
         txMinuto.setText(formatoMinuto.format(hoje.getTime()));
 
+        //BOTÃO ALARME ARRASTAR
+        //ImageView
     }
 }
