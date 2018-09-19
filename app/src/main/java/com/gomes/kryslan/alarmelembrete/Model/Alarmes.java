@@ -11,6 +11,7 @@ public class Alarmes implements Parcelable {
     private int minuto;
     private String lembrete;
     private int ativado;
+    private long tempoMilisegundos;
 
     //region GETs/SETs
     public int getId() {return id;}
@@ -27,6 +28,10 @@ public class Alarmes implements Parcelable {
 
     public int isAtivado() {return ativado;}
     public void setAtivado(int ativado) {this.ativado = ativado;}
+
+    public long getTempoMilisegundos() {return tempoMilisegundos;}
+
+    public void setTempoMilisegundos(long tempoMilisegundos) {this.tempoMilisegundos = tempoMilisegundos;}
     //endregion
 
     //region PARCELABLE
@@ -41,6 +46,7 @@ public class Alarmes implements Parcelable {
         setMinuto(parcel.readInt());
         setLembrete(parcel.readString());
         setAtivado(parcel.readInt());
+        setTempoMilisegundos(parcel.readLong());
     }
 
     @Override
@@ -50,6 +56,7 @@ public class Alarmes implements Parcelable {
         dest.writeInt(getMinuto());
         dest.writeString(getLembrete());
         dest.writeInt(isAtivado());
+        dest.writeLong(getTempoMilisegundos());
     }
 
     public static final Parcelable.Creator<Alarmes> CREATOR = new Parcelable.Creator<Alarmes>(){

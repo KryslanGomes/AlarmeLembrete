@@ -2,6 +2,8 @@ package com.gomes.kryslan.alarmelembrete.View;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -26,6 +28,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.gomes.kryslan.alarmelembrete.Controller.RecyclerViewOnClickListenerHack;
+import com.gomes.kryslan.alarmelembrete.Controller.TocaAlarme;
+import com.gomes.kryslan.alarmelembrete.MainActivity;
 import com.gomes.kryslan.alarmelembrete.Model.Alarmes;
 import com.gomes.kryslan.alarmelembrete.R;
 import com.gomes.kryslan.alarmelembrete.View.Adapters.ListaAlarmesAdapter;
@@ -37,6 +41,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.Context.ALARM_SERVICE;
 import static com.gomes.kryslan.alarmelembrete.Model.BD.BdLite.SelectAlarmesHoje;
 
 public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickListenerHack {
@@ -86,6 +91,9 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
         mRecyclerView.setLayoutManager(lm);
 
         mList = PegaEventosDaAgenda();
+
+        //DEFINE OS ALARMES
+        SetaOsAlarmes(mList);
 
         //ADAPTER
         ListaAlarmesAdapter adapter = new ListaAlarmesAdapter(getActivity(), mList);
@@ -198,20 +206,6 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
         savedInstanceState.putString("pesquisa", queryPesquisa);*/
     }
 
-    private void DialogTipoLista(Context contextLocal){
-//        new MaterialDialog.Builder(contextLocal)
-//                .title(R.string.selecioneTipoLista)
-//                .items(R.array.tipoLista)
-//                .itemsCallback(new MaterialDialog.ListCallback() {
-//                    @Override
-//                    public void onSelection(MaterialDialog dialog, View view, int itemSelecionado, CharSequence text) {
-//                        BdLite.atualizaTipoLista(itemSelecionado);
-//                        AtualizaTipoLista(mList);
-//                    }
-//                })
-//                .show();
-    }
-
     private List<Alarmes> PegaEventosDaAgenda() {
         if (ActivityCompat.checkSelfPermission(c, Manifest.permission.READ_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             Toast.makeText(c, "Conceda permição para ler o calendário para ativar a integração.", Toast.LENGTH_LONG).show();
@@ -268,6 +262,7 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
 
                     a.setHora(Integer.valueOf(formatoHora.format(calendario.getTime())));
                     a.setMinuto(Integer.valueOf(formatoMinuto.format(calendario.getTime())));
+                    a.setTempoMilisegundos(calendario.getTimeInMillis());
 
                     //CONFERE SE É ANIVERSÁRIO (futuramente pode configurar para criar um evento no dia seguinte para lembrar)
                     a.setLembrete(cursor.getString(1));
@@ -276,18 +271,31 @@ public class FragmentAlarmes extends Fragment implements RecyclerViewOnClickList
                 }
             } while (cursor.moveToNext());
             cursor.close();
-
-            list = OrganizaAlarmesNumericamente(list);  //Organiza a lista na ordem de horas e minutos.
         }
 
         return list;
     }
 
-    private List<Alarmes> OrganizaAlarmesNumericamente(List<Alarmes> list){
-        List<Alarmes> listaOrdenada = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
+    private void SetaOsAlarmes(List<Alarmes> mList){
+        for (int i = 0; i < mList.size(); i++) {
+            Intent myIntent = new Intent(c, TocaAlarme.class);
+            PendingIntent pendingIntent = PendingIntent.getService(c, 0, myIntent, 0);
 
+            AlarmManager alarmManager = (AlarmManager)c.getSystemService(ALARM_SERVICE);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.add(Calendar.SECOND, 10);
+
+            Date hoje = Calendar.getInstance().getTime();
+            Locale local = getResources().getConfiguration().locale;
+            SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", local);
+            String teste = dataFormat.format(hoje);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, mList.get(i).getTempoMilisegundos(), pendingIntent);
+
+            AlarmManager.AlarmClockInfo abelha = alarmManager.getNextAlarmClock();
+            Toast.makeText(c, "Alarme definido para: " + mList.get(i).getHora() + ":" + mList.get(i).getMinuto(), Toast.LENGTH_SHORT).show();
         }
-        return list;
+
     }
 }

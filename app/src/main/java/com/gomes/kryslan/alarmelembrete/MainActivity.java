@@ -50,31 +50,6 @@ public class MainActivity extends Tools {
             @Override
             public void onClick(View view) {
 
-                final Intent intent = new Intent(c, TelaDespertador.class);
-                startActivity(intent);
-
-
-                /*Intent myIntent = new Intent(MainActivity.this, TocaAlarme.class);
-                pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
-
-                AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-
-                AlarmManager.AlarmClockInfo abelha = alarmManager.getNextAlarmClock();
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTimeInMillis(System.currentTimeMillis());
-                calendar.add(Calendar.SECOND, 10);
-
-                Date hoje = Calendar.getInstance().getTime();
-                Locale local = getResources().getConfiguration().locale;
-                SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", local);
-                String teste = dataFormat.format(hoje);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis() + 60000, pendingIntent);
-
-                abelha = alarmManager.getNextAlarmClock();
-
-                Toast("Start Alarm: " + calendar.getTimeInMillis());*/
-
                 /*String nomePackageCalendario = CalendarContract.Events.CUSTOM_APP_PACKAGE;
                 Intent launchIntent = getPackageManager().getLaunchIntentForPackage(nomePackageCalendario);
                 if (launchIntent != null) {
@@ -91,6 +66,8 @@ public class MainActivity extends Tools {
         fragment =  new FragmentAlarmes();
 
         ft.replace(R.id.fragment, fragment).commit();
+
+
     }
 
     //ATUALIZA OS ALARMES onResume

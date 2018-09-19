@@ -7,6 +7,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,6 +27,7 @@ public class TelaDespertador extends Tools {
     Context c = this;
     Activity a = this;
     MediaPlayer mediaPlayer;
+    Vibrator vibrate;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class TelaDespertador extends Tools {
                 Toast.makeText(c, "Soneca precionado", Toast.LENGTH_SHORT).show();
                 mediaPlayer.stop();
                 mediaPlayer.release();
+                vibrate.cancel();
                 a.finish();
             }
         });
@@ -73,6 +76,7 @@ public class TelaDespertador extends Tools {
 
                 mediaPlayer.stop();
                 mediaPlayer.release();
+                vibrate.cancel();
                 a.finish();
             }
         });
@@ -82,6 +86,14 @@ public class TelaDespertador extends Tools {
 
         mediaPlayer.start();
 
+        //VIBRAÇÃO
+        vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+        long[] pattern = {0, 100, 1000};
+
+        if (vibrate != null) {
+            vibrate.vibrate(pattern, 0);
+        }
     }
 
     /*private void IniciaControleArrastar(){
