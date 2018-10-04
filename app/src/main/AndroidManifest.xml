@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.TelaDespertador" />
+        <receiver android:process=":remote" android:name=".Controller.TocaAlarme"></receiver>
     </application>
 
 

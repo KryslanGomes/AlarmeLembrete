@@ -1,6 +1,7 @@
 package com.gomes.kryslan.alarmelembrete.View;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.Ringtone;
@@ -23,7 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class TelaDespertador extends Tools {
+public class TelaDespertador extends Tools{  //Para fazer certo.
     Context c = this;
     Activity a = this;
     MediaPlayer mediaPlayer;
